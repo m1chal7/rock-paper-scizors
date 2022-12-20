@@ -15,38 +15,45 @@ function getComputerChoice() {
 
 let playerScore = 0;
 let computerScore = 0;
+const results = document.querySelector('.results');
+const score = document.querySelector('.score');
+results.textContent = '';
+score.textContent = '';
+
 
 function playRound(playerSelection, computerSelection) {
     if (playerSelection == "rock") {
         if (computerSelection == "Rock") {
-            console.log(` It's a tie! Your selection ${playerSelection}, Computer chose ${computerSelection}`)
+            results.textContent = ` It's a tie! Your selection ${playerSelection}, Computer chose ${computerSelection}`;
+            score.textContent = `Player: ${playerScore}, Computer: ${computerScore}`;
+               
         } else if (computerSelection == "Scizors") {
-            console.log(`YOU WIN! Your selection ${playerSelection}, Computer chose ${computerSelection}`)
+            results.textContent =  `YOU WIN! Your selection ${playerSelection}, Computer chose ${computerSelection}`
             playerScore++;
-            console.log(`Player: ${playerScore}, Computer: ${computerScore}`);
+            score.textContent = `Player: ${playerScore}, Computer: ${computerScore}`;
 
         } else if (computerSelection == "Paper"){
-            console.log(`YOU LOSE! Your selection ${playerSelection}, Computer chose ${computerSelection}`)
+            results.textContent = `YOU LOSE! Your selection ${playerSelection}, Computer chose ${computerSelection}`
             computerScore++;
-            console.log(`Player: ${playerScore}, Computer: ${computerScore}`);
+            score.textContent = `Player: ${playerScore}, Computer: ${computerScore}`;
         }
     }
     else if (playerSelection == "paper") {
         switch(computerSelection) {
             case "Paper":
-                console.log(` It's a tie! Your selection ${playerSelection}, Computer chose ${computerSelection}`);
-                console.log(`Player: ${playerScore}, Computer: ${computerScore}`);
+                results.textContent = ` It's a tie! Your selection ${playerSelection}, Computer chose ${computerSelection}`;
+                score.textContent = `Player: ${playerScore}, Computer: ${computerScore}`;
                 break;
             case "Rock":
-                console.log(` You Win! Your selection ${playerSelection}, Computer chose ${computerSelection}`);
+                results.textContent = ` You Win! Your selection ${playerSelection}, Computer chose ${computerSelection}`;
                 playerScore++;
-                console.log(`Player: ${playerScore}, Computer: ${computerScore}`);
+                score.textContent = `Player: ${playerScore}, Computer: ${computerScore}`;
                 break;
 
             case "Scizors":
-                console.log(` You Lose! Your selection ${playerSelection}, Computer chose ${computerSelection}`);
+                results.textContent = ` You Lose! Your selection ${playerSelection}, Computer chose ${computerSelection}`;
                 computerScore++;
-                console.log(`Player: ${playerScore}, Computer: ${computerScore}`);
+                score.textContent = `Player: ${playerScore}, Computer: ${computerScore}`;
                 break;
         
         }
@@ -55,37 +62,63 @@ function playRound(playerSelection, computerSelection) {
     else if (playerSelection == "scizors") {
         switch(computerSelection) {
             case "Scizors":
-                console.log(` It's a tie! Your selection ${playerSelection}, Computer chose ${computerSelection}`);
-                console.log(`Player: ${playerScore}, Computer: ${computerScore}`);
+                results.textContent = ` It's a tie! Your selection ${playerSelection}, Computer chose ${computerSelection}`;
+                score.textContent = `Player: ${playerScore}, Computer: ${computerScore}`;
                 break;
             case "Paper":
-                console.log(` You Win! Your selection ${playerSelection}, Computer chose ${computerSelection}`);
+                results.textContent = ` You Win! Your selection ${playerSelection}, Computer chose ${computerSelection}`;
                 playerScore++;
-                console.log(`Player: ${playerScore}, Computer: ${computerScore}`);
+                score.textContent = `Player: ${playerScore}, Computer: ${computerScore}`;
                 break;
 
             case "Rock":
-                console.log(` You Lose! Your selection ${playerSelection}, Computer chose ${computerSelection}`);
+                results.textContent = ` You Lose! Your selection ${playerSelection}, Computer chose ${computerSelection}`;
                 computerScore++;
-                console.log(`Player: ${playerScore}, Computer: ${computerScore}`);
+                score.textContent = `Player: ${playerScore}, Computer: ${computerScore}`;
                 break;
         
         }
 
     }
   }
-
-
-   
-  
-  
+ 
 
   function game() {
-    for (let i=0; i < 5; i++) {
-        let playerSelection = prompt('rock paper or scizors?').toLowerCase();
-        let computerSelection = getComputerChoice();
-        playRound(playerSelection, computerSelection);
-    }
+  //  for (let i=0; i < 5; i++) {
+  //      let playerSelection = prompt('rock paper or scizors?').toLowerCase();
+  //      let computerSelection = getComputerChoice();
+  //      playRound(playerSelection, computerSelection);
+ //   }
+
+ //let playerSelection = '';
+
+
+ const rock = document.querySelector('.rock');
+  const paper = document.querySelector('.paper');
+  const scizors = document.querySelector('.scizors');
+  const button = document.querySelectorAll('button');
+  let playerSelection = '';
+ 
+ rock.addEventListener('click', () => {
+  
+  playerSelection = 'rock';
+  let computerSelection = getComputerChoice();
+  
+  playRound(playerSelection,computerSelection);
+ })
+
+
+ paper.addEventListener('click', () => {
+    let computerSelection = getComputerChoice();
+    playRound('paper',computerSelection);
+ })
+ 
+ scizors.addEventListener('click', () => {
+    let computerSelection = getComputerChoice();
+    playRound('scizors',computerSelection);
+ })
+
+
     if (playerScore == computerScore) {
         console.log('A Tie!');
     }
